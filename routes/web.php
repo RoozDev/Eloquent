@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::controller(ProductController::class)->group(function (){
+    Route::get('/eloquent/local/scope','QueryLocalScope')->name('local.scope');
+
+});
+Route::controller(HomeController::class)->group(function (){
+    Route::get('/eloquent/global/scope','QueryGlobalScope')->name('global.scope');
 });
